@@ -1,0 +1,68 @@
+@import '../_resourse/assets/scss/variables.scss';
+
+.text-wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10%;
+	p {
+		font-size: 12px;
+	}
+	margin-top: 10%;
+	@media screen and (max-width: 380px) {
+		margin-top: 6%;
+		h1 {
+			font-size: 20px;
+		}
+	}
+}
+
+.testCheckBoxGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 9px;
+	row-gap: 8px;
+	margin-top: 12px;
+	.testCheckBox {
+		border: 1px solid $borderColor;
+		border-radius: 20px;
+		padding: 24px 0;
+		text-align: center;
+		position: relative;
+
+		&.active {
+			background-color: $activeBg;
+			color: $primary;
+			.desc {
+				color: $primary;
+			}
+		}
+		.customCheckbox {
+			position: absolute;
+			right: 12px;
+			top: 12px;
+		}
+		.title {
+			font-size: 18px;
+			font-weight: 400;
+		}
+		.desc {
+			font-size: 12px;
+			font-weight: 400;
+			color: #d0d7de;
+		}
+		img {
+			margin: 5% auto 0;
+			&.img-full {
+				width: 100%;
+				height: auto;
+			}
+		}
+		@media screen and (max-width: 380px) {
+			padding: 10px 0;
+			img {
+				margin: 0 auto;
+			}
+		}
+	}
+}

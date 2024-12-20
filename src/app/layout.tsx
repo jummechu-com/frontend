@@ -1,21 +1,11 @@
 import type { Metadata } from 'next'
 import { Viewport } from 'next'
+import { headers } from 'next/headers'
 import '@/app/_resourse/assets/scss/index.scss'
 import React from 'react'
-import localFont from 'next/font/local'
 import genMetadata from '@/app/_head/metadata'
 import genViewPort from '@/app/_head/viewport'
-
-const geistSans = localFont({
-	src: '/_resourse/fonts/GeistVF.woff',
-	variable: '--font-geist-sans',
-	weight: '100 900',
-})
-const geistMono = localFont({
-	src: '/_resourse/fonts/GeistMonoVF.woff',
-	variable: '--font-geist-mono',
-	weight: '100 900',
-})
+import Header from '@/widgets/ui/Header/Header'
 
 export const metadata: Metadata = {
 	...genMetadata({
@@ -28,14 +18,19 @@ export function generateViewport(): Viewport {
 	return genViewPort()
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	// 서버 사이드에서 헤더 확인
+	const headersList = await headers()
+	const showHeader = headersList.get('x-show-header') !== 'false'
+
 	return (
 		<html lang="ko">
-			<body className={`layout ${geistSans.variable}  antialiased`}>
+			<body className={`layout antialiased`}>
+				{showHeader && <Header />}
 				{children}
 			</body>
 		</html>

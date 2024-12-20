@@ -5,9 +5,9 @@ interface CheckboxProps {
 
 export default function Checkbox({ id, checked }: CheckboxProps) {
 	return (
-		<div className="customCheckbox">
+		<div className={'customCheckbox'}>
 			<input type="checkbox" id={id} checked={checked} />
-			<label htmlFor={id} className={checked ? 'checked' : ''}></label>
+			<label htmlFor={id} className={`${checked ? 'checked' : ''}`}></label>
 		</div>
 	)
 }

@@ -1,0 +1,48 @@
+@import '../_resourse/assets/scss/variables.scss';
+.text-wrap {
+	margin-top: 10%;
+	@media screen and (max-width: 380px) {
+		margin-top: 6%;
+		h1 {
+			font-size: 20px;
+		}
+	}
+}
+.testCheckBox {
+	margin-top: 12px;
+	border: 1px solid $borderColor;
+	border-radius: 20px;
+	padding: 24px 0;
+	text-align: center;
+	position: relative;
+	@media screen and (max-width: 380px) {
+		padding: 12px 0;
+		img {
+			margin: 4% auto 0;
+		}
+	}
+	&.active {
+		background-color: $activeBg;
+	}
+	.customCheckbox {
+		position: absolute;
+		right: 12px;
+		top: 12px;
+	}
+	p {
+		font-size: 20px;
+		@media screen and (max-width: 380px) {
+			font-size: 18px;
+		}
+		span {
+			color: $primary;
+		}
+	}
+	img {
+		margin: 5% auto 0;
+		&.img-full {
+			width: 100%;
+			height: auto;
+		}
+	}
+}

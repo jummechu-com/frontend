@@ -1,3 +1,4 @@
+@use 'variables' as v;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,45 +7,148 @@
 	--background: #ffffff;
 	--foreground: #000000;
 }
-$primary: #ff8107;
-$borderColor: #ddd;
-$gray: #e6e6e6;
-$white: #fff;
-$activeBg: #ffe9d4;
 
+@font-face {
+	font-family: 'Paperlogy-4Regular';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Paperlogy-5Medium';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2')
+		format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Paperlogy-6SemiBold';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2')
+		format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Paperlogy-7Bold';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
 @font-face {
 	font-family: 'Paperlogy-8ExtraBold';
 	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2')
 		format('woff2');
-	font-weight: normal;
+	font-weight: 800;
 	font-style: normal;
 }
-
 body {
 	color: var(--foreground);
 	background: var(--background);
 	font-family: 'Paperlogy-8ExtraBold', Helvetica, sans-serif;
 }
 
+.text-normal {
+	font-family: 'Paperlogy-4Regular', sans-serif;
+}
+.text-medium {
+	font-family: 'Paperlogy-5Medium', sans-serif;
+}
+.text-semibold {
+	font-family: 'Paperlogy-6SemiBold', sans-serif;
+}
+.text-bold {
+	font-family: 'Paperlogy-7Bold', sans-serif;
+}
+
 h1 {
 	font-size: 22px;
 }
 
-button.btn {
+.btn {
 	width: 100%;
 	height: 58px;
-	background-color: $gray;
-	color: $white;
+	background-color: v.$gray;
+	color: v.$white;
 	font-weight: 500;
 	font-size: 18px;
 	border-radius: 12px;
 	border: none;
+	width: calc(100% - 40px);
+	@media screen and (max-width: 380px) {
+		font-size: 16px;
+		height: 50px;
+	}
+	&.bordered {
+		border: 1px solid v.$gray;
+		background-color: v.$white;
+		color: #57606a;
+	}
 	&.bottom {
 		position: absolute;
 		bottom: 30px;
 	}
 	&.active {
-		background-color: $primary;
+		background-color: v.$primary;
+	}
+}
+.btn2colum {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 12px;
+	position: absolute;
+	bottom: 30px;
+	width: calc(100% - 40px);
+	.btn {
+		width: 100%;
+	}
+}
+.layout {
+	width: 100%;
+	height: 100vh;
+	min-width: 320px;
+	max-width: 500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	// padding-left: 20px;
+	// padding-right: 20px;
+	padding-top: var(--layout-padding);
+	padding-bottom: 0;
+	// padding-bottom: calc(env(safe-area-inset-bottom) + 0px);
+	// padding-bottom: calc(constant(safe-area-inset-bottom) + 0px);
+	background-color: var(--layout-bg-color);
+	main {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		padding: 40px 20px 20px;
+	}
+}
+
+.onboardinPage {
+	.logoNText {
+		margin: 35% auto;
+		@media screen and (max-width: 380px) {
+			width: 150px;
+			heigth: auto;
+			margin: 25% auto;
+		}
+	}
+}
+
+.login-btn {
+	width: 100%;
+	border-radius: 12px;
+	background-color: #fee500;
+	height: 58px;
+	font-size: 18px;
+	overflow: hidden;
+	img {
+		width: 335px;
+		height: 58px;
 	}
 }
 
@@ -62,102 +166,54 @@ button.btn {
 		width: 24px;
 		height: 24px;
 		border-radius: 50%;
+		// background-image: url('../../../app/_resourse/assets/images/checkbox1.svg');
 		background-image: url('../images/checkbox1.svg');
 		cursor: pointer;
 	}
 	label.checked {
+		// background-image: url('../../../app/_resourse/assets/images/checkbox2.svg');
 		background-image: url('../images/checkbox2.svg');
 	}
 }
 
-.layout {
-	width: 100%;
-	height: 100vh;
-	min-width: 320px;
-	max-width: 500px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: var(--layout-padding);
-	padding-bottom: 0;
-	// padding-bottom: calc(env(safe-area-inset-bottom) + 0px);
-	// padding-bottom: calc(constant(safe-area-inset-bottom) + 0px);
-	background-color: var(--layout-bg-color);
-}
-
-.mainContents {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-}
-
-.login-btn {
-	width: 100%;
-	border-radius: 12px;
-	background-color: #fee500;
-	height: 58px;
-	font-size: 18px;
-	overflow: hidden;
-	img {
-		width: 335px;
-		height: 58px;
-	}
-}
-
-.nav {
-	display: flex;
-	height: 26px;
-	.logo {
-		margin-left: 35%;
-	}
-}
-
+/******** test1, test2, test3 ********/
 .processContainer {
 	height: 32px;
 	position: relative;
 	margin-top: 14px;
+
+	&.step2 {
+		.processIcon {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.processBar {
+			z-index: 1;
+			width: 50%;
+			border-color: v.$primary;
+		}
+	}
+	&.step3 {
+		.processIcon {
+			right: 0;
+		}
+		.processBar {
+			z-index: 1;
+			width: 100%;
+			border-color: v.$primary;
+		}
+	}
 	.processIcon {
 		position: absolute;
 		z-index: 2;
 		top: 2px;
 	}
-	.process {
+	.process,
+	.processBar {
 		position: absolute;
 		top: 13px;
 		width: 100%;
 		border: 2.5px solid #e6e6e6;
 		border-radius: 10px;
-	}
-}
-.testCheckBox {
-	margin-top: 12px;
-	border: 1px solid $borderColor;
-	border-radius: 20px;
-	padding: 24px 0;
-	text-align: center;
-	position: relative;
-	&.active {
-		background-color: $activeBg;
-	}
-	.customCheckbox {
-		position: absolute;
-		right: 12px;
-		top: 12px;
-	}
-	p {
-		font-size: 20px;
-		span {
-			color: $primary;
-		}
-	}
-	img {
-		margin: 20px auto 0;
-		&.img-full {
-			width: 100%;
-			height: auto;
-		}
 	}
 }
